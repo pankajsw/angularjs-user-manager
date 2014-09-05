@@ -1,0 +1,13 @@
+<div class="user-list-title">
+    <h1>Users List</h1>
+</div>
+<hr>
+<div class="user-list">    
+    <label for="filterName">Filter Data: </label>
+    <input type="text" data-ng-model="filter.name" name="filterName" />
+    <br>
+    <hr>
+    <ul>
+        <li data-ng-repeat="cust in customers | filter:filter.name | orderBy:city">{{cust.name | uppercase}} -- {{cust.city | lowercase}}</li>
+    </ul>
+</div>
