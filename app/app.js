@@ -41,12 +41,16 @@ userApp.controller('usersListController', function($scope, usersFactory) {
             city: $scope.newCustomer.city
         })
 
+        //Clearing the textfields after save button click
+        $scope.newCustomer.name = "";
+        $scope.newCustomer.city = "";
+
         var customers = JSON.stringify($scope.customers);
         localStorage.setItem('customers', customers);
 
         // var data = JSON.parse(localStorage.getItem('customers'));
         // console.log(data);
-  	}
+    }
 
 });
 
