@@ -4,7 +4,10 @@ userApp.controller('usersListController', function($scope, usersFactory) {
     init();
 
     function init() {
-        $scope.customers = usersFactory.getCustomers();
+        usersFactory.getCustomers().then(function(data){
+            $scope.customers = data.users;
+            console.log($scope.customers)
+        });
     }
 
     $scope.addCustomer = function() {

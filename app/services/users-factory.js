@@ -1,25 +1,18 @@
-userApp.factory('usersFactory', function() {
-    var customers = [{
-        name: 'Dave Jones',
-        city: 'Phoenix'
-    }, {
-        name: 'Jamie Riley',
-        city: 'Atlanta'
-    }, {
-        name: 'Heedy Whalin',
-        city: 'Chandler'
-    }, {
-        name: 'Thomas Winter',
-        city: 'Seattle'
-    }];
+userApp.factory('usersFactory', function($http) {
 
-    var factory = {};
-    factory.getCustomers = function() {
-        return customers;
-    }
-    factory.postCustomers = function() {
+    var usersFactory = {
+        getCustomers: function() {
+            // $http returns a promise, which has a then function, which also returns a promise
+            var promise = $http.get('app/services/users.json').then(function (response) {
+            // The then function here is an opportunity to modify the response
+            // console.log(response);
+            // The return value gets picked up by the then in the controller.
+            return response.data;
+        });
+        // Return the promise to the controller
+        return promise;
+        }
+    };
+    return usersFactory;
 
-    }
-
-    return factory;
 });
