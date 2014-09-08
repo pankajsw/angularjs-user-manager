@@ -1,33 +1,31 @@
 userApp.controller('usersListController', function($scope, usersFactory) {
 
-    //If customers exists in localStorage then intialize $scope.customers with that data.
-    $scope.customers = JSON.parse(localStorage.getItem('customers'));
+    //If users exists in localStorage then intialize $scope.users with that data.
+    $scope.users = JSON.parse(localStorage.getItem('users'));
 
     init();
 
     function init() {
-        //If customers does not exists in localStorage then intialize $scope.customers with JSON data from file.
-        if($scope.customers === null){
-            usersFactory.getCustomers().then(function(data){
-                $scope.customers = data.users;
+        //If users does not exists in localStorage then intialize $scope.users with JSON data from file.
+        if($scope.users === null){
+            usersFactory.getUsers().then(function(data){
+                $scope.users = data.users;
             });
         }    
     }
 
-    $scope.addCustomer = function() {
-        $scope.customers.push({
-            name: $scope.newCustomer.name,
-            city: $scope.newCustomer.city
+    $scope.addUser = function() {
+        $scope.users.push({
+            name: $scope.newUser.name,
+            city: $scope.newUser.city
         })
 
         //Clearing the textfields after save button click
-        $scope.newCustomer.name = "";
-        $scope.newCustomer.city = "";
+        $scope.newUser.name = "";
+        $scope.newUser.city = "";
 
-        console.log($scope.customers);
-
-        var customers = JSON.stringify($scope.customers);
-        localStorage.setItem('customers', customers);
+        var users = JSON.stringify($scope.users);
+        localStorage.setItem('users', users);
 
     }
 

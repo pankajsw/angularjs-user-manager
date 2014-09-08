@@ -1,7 +1,7 @@
 userApp.factory('usersFactory', function($http) {
 
     var usersFactory = {
-        getCustomers: function() {
+        getUsers: function() {
             // $http returns a promise, which has a then function, which also returns a promise
             var promise = $http.get('app/services/users.json').then(function (response) {
             // The then function here is an opportunity to modify the response

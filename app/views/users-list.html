@@ -7,6 +7,6 @@
     <input type="text" data-ng-model="filter.name" name="filterName" class="form-control" />
     <hr>
     <ul>
-        <li data-ng-repeat="cust in customers | filter:filter.name | orderBy:city">{{cust.name | uppercase}} -- {{cust.city | lowercase}}</li>
+        <li data-ng-repeat="user in users | filter:filter.name | orderBy:city">{{user.name | uppercase}} -- {{user.city | lowercase}}</li>
     </ul>
 </div>
