@@ -1,13 +1,17 @@
 userApp.controller('usersListController', function($scope, usersFactory) {
-    $scope.customers = [];
+
+    //If customers exists in localStorage then intialize $scope.customers with that data.
+    $scope.customers = JSON.parse(localStorage.getItem('customers'));
 
     init();
 
     function init() {
-        usersFactory.getCustomers().then(function(data){
-            $scope.customers = data.users;
-            console.log($scope.customers)
-        });
+        //If customers does not exists in localStorage then intialize $scope.customers with JSON data from file.
+        if($scope.customers === null){
+            usersFactory.getCustomers().then(function(data){
+                $scope.customers = data.users;
+            });
+        }    
     }
 
     $scope.addCustomer = function() {
@@ -20,11 +24,11 @@ userApp.controller('usersListController', function($scope, usersFactory) {
         $scope.newCustomer.name = "";
         $scope.newCustomer.city = "";
 
+        console.log($scope.customers);
+
         var customers = JSON.stringify($scope.customers);
         localStorage.setItem('customers', customers);
 
-        // var data = JSON.parse(localStorage.getItem('customers'));
-        // console.log(data);
     }
 
 });
