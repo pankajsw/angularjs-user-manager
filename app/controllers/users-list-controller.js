@@ -7,11 +7,11 @@ userApp.controller('usersListController', function($scope, usersFactory) {
 
     function init() {
         //If users does not exists in localStorage then intialize $scope.users with JSON data from file.
-        if($scope.users === null){
-            usersFactory.getUsers().then(function(data){
+        if ($scope.users === null) {
+            usersFactory.getUsers().then(function(data) {
                 $scope.users = data.users;
             });
-        }    
+        }
     }
 
     $scope.addUser = function() {
